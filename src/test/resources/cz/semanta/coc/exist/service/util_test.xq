@@ -5,4 +5,4 @@ xquery version "3.0";
 : org.exist.xquery.functions.util.UtilModule
 :)
 
-util:base64-encode("praseodym")
+util:base64-encode("foo")
