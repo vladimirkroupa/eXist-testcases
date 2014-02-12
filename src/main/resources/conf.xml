@@ -732,30 +732,29 @@
             <!-- 
                 Default Modules 
             -->
-            <!--<module uri="http://exist-db.org/util/examples"   class="org.exist.util.modules.util.ExampleModule" />-->
-            <!--<module uri="http://exist-db.org/util/inspection" class="org.exist.util.functions.inspect.InspectionModule"/>-->
-            <!--<module uri="http://exist-db.org/util/mail"       class="org.exist.util.modules.mail.MailModule" />-->
-            <!--<module uri="http://exist-db.org/util/math"       class="org.exist.util.modules.math.MathModule" />-->
-            <!--<module uri="http://exist-db.org/util/request"    class="org.exist.util.functions.request.RequestModule" />-->
-            <!--<module uri="http://exist-db.org/util/response"   class="org.exist.util.functions.response.ResponseModule" />-->
-            <!--<module uri="http://exist-db.org/util/securitymanager" class="org.exist.util.functions.securitymanager.SecurityManagerModule"/>-->
-            <!--<module uri="http://exist-db.org/util/session"    class="org.exist.util.functions.session.SessionModule" />-->
-            <!--<module uri="http://exist-db.org/util/system"     class="org.exist.util.functions.system.SystemModule" />-->
-            <!--<module uri="http://exist-db.org/util/text"       class="org.exist.util.functions.text.TextModule" />-->
-            <!--<module uri="http://exist-db.org/util/transform"  class="org.exist.util.functions.transform.TransformModule" />-->
 
-            <!--<module uri="http://exist-db.org/util/xmldbutil"       class="org.exist.util.functions.xmldbutil.UtilModule">-->
-                <!--&lt;!&ndash; set to true to disable the xmldbutil:eval functions &ndash;&gt;-->
-                <!--<parameter name="evalDisabled" value="false"/>-->
-            <!--</module>-->
+            <!--<module uri="http://exist-db.org/xquery/examples"   class="org.exist.xquery.modules.example.ExampleModule" />-->
+            <!--<module uri="http://exist-db.org/xquery/inspection" class="org.exist.xquery.functions.inspect.InspectionModule"/>-->
+            <!--<module uri="http://exist-db.org/xquery/mail"       class="org.exist.xquery.modules.mail.MailModule" />-->
+            <!--<module uri="http://exist-db.org/xquery/math"       class="org.exist.xquery.modules.math.MathModule" />-->
+            <!--<module uri="http://exist-db.org/xquery/request"    class="org.exist.xquery.functions.request.RequestModule" />-->
+            <!--<module uri="http://exist-db.org/xquery/response"   class="org.exist.xquery.functions.response.ResponseModule" />-->
+            <!--<module uri="http://exist-db.org/xquery/securitymanager" class="org.exist.xquery.functions.securitymanager.SecurityManagerModule"/>-->
+            <!--<module uri="http://exist-db.org/xquery/session"    class="org.exist.xquery.functions.session.SessionModule" />-->
+            <!--<module uri="http://exist-db.org/xquery/system"     class="org.exist.xquery.functions.system.SystemModule" />-->
+            <!--<module uri="http://exist-db.org/xquery/text"       class="org.exist.xquery.functions.text.TextModule" />-->
+            <!--<module uri="http://exist-db.org/xquery/transform"  class="org.exist.xquery.functions.transform.TransformModule" />-->
 
-            <!--<module uri="http://exist-db.org/util/validation" class="org.exist.util.functions.validation.ValidationModule" />-->
+            <module uri="http://exist-db.org/xquery/util"       class="org.exist.xquery.functions.util.UtilModule">
+                <!-- set to true to disable the util:eval functions -->
+                <parameter name="evalDisabled" value="false"/>
+            </module>
+
+            <!--<module uri="http://exist-db.org/xquery/validation" class="org.exist.xquery.functions.validation.ValidationModule" />-->
             <module uri="http://exist-db.org/xquery/xmldb"      class="org.exist.xquery.functions.xmldb.XMLDBModule" />
 
             <module uri="http://www.w3.org/2005/xpath-functions/map"  class="org.exist.xquery.functions.map.MapModule" />
-            <!--<module uri="http://www.w3.org/2005/xpath-functions/math" class="org.exist.util.functions.math.MathModule" />-->
-
-
+            <!--<module uri="http://www.w3.org/2005/xpath-functions/math" class="org.exist.xquery.functions.math.MathModule" />            -->
 
             <!-- 
                 EXPath Modules 
