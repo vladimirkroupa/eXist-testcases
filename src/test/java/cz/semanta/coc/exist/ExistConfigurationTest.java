@@ -1,11 +1,11 @@
-package cz.semanta.coc.exist.service;
+package cz.semanta.coc.exist;
 
 import cz.semanta.coc.exist.EmbeddedExistInstance;
-import cz.semanta.coc.exist.ExistInstance;
 import cz.semanta.coc.exist.StandaloneExistInstance;
+import cz.semanta.coc.exist.service.ExistDB;
+import cz.semanta.coc.exist.service.ExistDBImpl;
 import cz.semanta.coc.util.ResourceLoader;
 import org.junit.Before;
-import org.junit.Ignore;
 import org.junit.Test;
 import org.xmldb.api.base.Collection;
 import org.xmldb.api.base.XMLDBException;
@@ -27,8 +27,8 @@ public class ExistConfigurationTest {
 
     @Before
     public void setUp() throws XMLDBException {
-        standalone = new ExistDB(new StandaloneExistInstance("admin", "admin", "tmp", "localhost", 8080));
-        embedded = new ExistDB(new EmbeddedExistInstance());
+        standalone = new ExistDBImpl(new StandaloneExistInstance("admin", "admin", "tmp", "localhost", 8080));
+        embedded = new ExistDBImpl(new EmbeddedExistInstance());
     }
 
     @Test

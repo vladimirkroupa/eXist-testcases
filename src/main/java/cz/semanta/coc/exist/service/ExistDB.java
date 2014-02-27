@@ -1,60 +1,31 @@
 package cz.semanta.coc.exist.service;
 
-import com.google.common.base.Preconditions;
+import com.google.common.base.Optional;
 import cz.semanta.coc.exist.ExistInstance;
-import org.exist.xmldb.DatabaseImpl;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
-import org.xmldb.api.DatabaseManager;
-import org.xmldb.api.base.*;
-import org.xmldb.api.modules.XQueryService;
+import org.w3c.dom.Document;
+import org.xmldb.api.base.Collection;
+import org.xmldb.api.base.ResourceSet;
+import org.xmldb.api.base.XMLDBException;
 
-import java.util.Collections;
 import java.util.Map;
 
 /**
- * Created by vkr on 2/11/14.
+ * Attempt to build a slightly higher-level API upon eXist XML:DB API.
+ *
+ * @author vkr
  */
-public class ExistDB {
+public interface ExistDB {
 
-    private static final Logger log = LoggerFactory.getLogger(ExistDB.class);
+    String storeTemporaryXmlDocument(String content) throws XMLDBException;
 
-    private final ExistInstance instance;
+    Collection createCollection(Collection parent, String collectionName) throws XMLDBException;
 
-    public ExistDB(ExistInstance instance) throws XMLDBException {
-        this.instance = instance;
-        init();
-    }
+    Collection getRootCollection() throws XMLDBException;
 
-    private void init() throws XMLDBException {
-        Database database = new DatabaseImpl();
-        database.setProperty("create-database", "true");
-        database.setProperty("configuration", "conf.xml");
-        DatabaseManager.registerDatabase(database);
-    }
+    Collection getTemporaryCollection() throws XMLDBException;
 
-    public ResourceSet executeXQuery(String xQuery, Collection inCollection, Map<String, String> localVariables) throws XMLDBException {
-        XQueryService xqs = (XQueryService) inCollection.getService("XQueryService", "1.0");
-        for (Map.Entry<String, String> entry : localVariables.entrySet()) {
-            String varName = Preconditions.checkNotNull(entry.getKey());
-            String varValue = Preconditions.checkNotNull(entry.getValue());
-            xqs.declareVariable(varName, varValue);
-        }
-        CompiledExpression ce = xqs.compile(xQuery);
-        ResourceSet resourceSet = xqs.execute(ce);
-        log.debug("ResourceSet contains {} items.", resourceSet.getSize());
-        return resourceSet;
-    }
+    ResourceSet executeXQuery(String xQuery, Collection inCollection) throws XMLDBException;
 
-    public ResourceSet executeXQuery(String xQuery, Collection inCollection) throws XMLDBException {
-        return executeXQuery(xQuery, inCollection, Collections.<String, String>emptyMap());
-    }
-
-    public Collection getRootCollection() throws XMLDBException {
-        String uri = instance.getExistUri() + "/" + instance.getCollectionRoot();
-        log.debug("Accessing collection at path {}.", uri);
-        Collection collection = DatabaseManager.getCollection(uri, instance.getUsername(), instance.getPassword());
-        return collection;
-    }
+    ResourceSet executeXQuery(String xQuery, Collection inCollection, Map<String, String> localVariables) throws XMLDBException;
 
 }

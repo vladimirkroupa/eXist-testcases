@@ -1,0 +1,41 @@
+<project name="COC_dev_env" basedir="." default="store">
+   
+    <!-- import default properties from file -->
+    <xmlproperty file="dev-env-config.xml"/>
+   
+    <property name="exist.uri" value="xmldb:exist://${config.host}:${config.port}/exist/xmlrpc/db"/>
+    
+    <path id="classpath.core">
+        <fileset dir="${config.eXistpath}/lib/core">
+            <include name="*.jar"/>
+        </fileset>
+        <pathelement path="${config.eXistpath}/exist.jar"/>
+        <pathelement path="${config.eXistpath}/exist-optional.jar"/>
+    </path>
+
+    <typedef resource="org/exist/ant/antlib.xml" uri="http://exist-db.org/ant">
+        <classpath refid="classpath.core"/>
+    </typedef>    
+   
+    <available file="${config.xquerydir}" property="xqm.present"/>
+   
+    <target name="store" xmlns:xmldb="http://exist-db.org/ant" if="xqm.present" depends="check-files">
+        <echo message="Storing content of directory ${config.xquerydir} in eXist instance."/>
+        <!-- Store source directory to eXist -->
+        <xmldb:store uri="${exist.uri}" 
+            user="${config.username}" 
+            password="${config.password}"
+            createcollection="true" 
+            createsubcollections="true" 
+            permissions="rwxr-xr-x">
+
+            <fileset dir="${config.xquerydir}" includes="**/*.xqm, **/*.xql, **/*.xq"/>
+        </xmldb:store>
+    </target>
+    
+    <target name="check-files" unless="xqm.present">
+        <echo message="The XQuery sources could not be found in directory ${config.xquerydir}. Please edit"/>
+        <echo message="config.xml and check the path specified via the &lt;xquerydir&gt; element."/>
+    </target>       
+    
+</project>

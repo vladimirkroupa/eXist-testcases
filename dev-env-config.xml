@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<config>
+    <!-- path to eXist directory -->
+    <eXistpath>/home/prasopes/prg/semanta/eXist-db-2.2</eXistpath>
+
+    <!-- eXist host & port -->
+    <host>localhost</host>
+    <port>8080</port>
+
+    <!-- eXist login -->
+	<username>admin</username>
+	<password>admin</password>
+    
+    <!-- XQuery source directory -->
+    <xquerydir>src/main/resources/cz/semanta/xquery</xquerydir>
+    
+    <mode>database</mode>
+</config>
