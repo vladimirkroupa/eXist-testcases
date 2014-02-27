@@ -11,10 +11,16 @@ public class StandaloneExistInstance implements ExistInstance {
 
     private final String collectionRoot;
 
-    public StandaloneExistInstance(String username, String password, String collectionRoot) {
+    private final String host;
+
+    private final String port;
+
+    public StandaloneExistInstance(String username, String password, String collectionRoot, String host, String port) {
         this.username = username;
         this.password = password;
         this.collectionRoot = collectionRoot;
+        this.host = host;
+        this.port = port;
     }
 
     @Override
@@ -39,9 +45,7 @@ public class StandaloneExistInstance implements ExistInstance {
 
     @Override
     public String getExistUri() {
-        //TODO: avoid hardcoded URI
-        return "xmldb:exist://localhost:8080/exist/xmlrpc/db";
+        return "xmldb:exist://"+ host +":"+ port +"/exist/xmlrpc/db";
     }
-
 
 }
