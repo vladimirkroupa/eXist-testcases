@@ -27,7 +27,7 @@ public class ExistConfigurationTest {
 
     @Before
     public void setUp() throws XMLDBException {
-        standalone = new ExistDB(new StandaloneExistInstance("admin", "admin", "tmp", "localhost", "8080"));
+        standalone = new ExistDB(new StandaloneExistInstance("admin", "admin", "tmp", "localhost", 8080));
         embedded = new ExistDB(new EmbeddedExistInstance());
     }
 

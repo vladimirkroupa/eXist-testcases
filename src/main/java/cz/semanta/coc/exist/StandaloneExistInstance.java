@@ -13,9 +13,9 @@ public class StandaloneExistInstance implements ExistInstance {
 
     private final String host;
 
-    private final String port;
+    private final int port;
 
-    public StandaloneExistInstance(String username, String password, String collectionRoot, String host, String port) {
+    public StandaloneExistInstance(String username, String password, String collectionRoot, String host, int port) {
         this.username = username;
         this.password = password;
         this.collectionRoot = collectionRoot;
